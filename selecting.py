@@ -15,7 +15,7 @@ apikey = userDICT["articut_key"]
 articut = Articut(username=username, apikey=apikey)
 
 
-geBuTingPAT = re.compile("<(ACTION_verb|VerbP)>[^<]+</(ACTION_verb|VerbP)><ACTION_eventQuantifier>個</ACTION_eventQuantifier><(MODIFIER|ModifierP)>不停</(MODIFIER|ModifierP)>")
+geBuTingPAT = re.compile("<(ACTION_verb|VerbP)>[^<]+</(ACTION_verb|VerbP)><(ACTION_eventQuantifier|ENTITY_classifier)>個</(ACTION_eventQuantifier|ENTITY_classifier)>(<(MODIFIER|ModifierP)>不停</(MODIFIER|ModifierP)>|<ENTITY_nouny>不停</ENTITY_nouny>)")
 
 if __name__ == "__main__":
 
@@ -32,12 +32,13 @@ if __name__ == "__main__":
                 #print(com["res_pos_str"])
 
     # 看看學生的造樣造句是否符合正確 pattern
-    studentSTR = "吃個不停"
+    studentSTR = "滾個不停"
     #studentSTR = "一個不停"
 
     studentResPosDICT = articut.parse(studentSTR)
     if studentResPosDICT["status"]:
         studentResPosSTR = "".join(studentResPosDICT["result_pos"])
+        print(studentResPosSTR)
         if geBuTingPAT.search(studentResPosSTR):
             print("符合句法")
         else:

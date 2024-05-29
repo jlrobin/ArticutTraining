@@ -33,7 +33,11 @@ if __name__ == "__main__":
 
     # 看看學生的造樣造句是否符合正確 pattern
     studentSTR = "滾個不停"
+<<<<<<< HEAD
     studentSTR = "一個不停"
+=======
+    #studentSTR = "一個不停"
+>>>>>>> abdca60d523d7894051c5d6b8173f73adecb1f7e
 
     studentResPosDICT = articut.parse(studentSTR)
     if studentResPosDICT["status"]:
